@@ -1,9 +1,12 @@
+# ================================
 # Composer build stage
+# ================================
 FROM composer:2 AS composer-build
 
 WORKDIR /app
 
-COPY composer.json composer.lock ./
+# 👇 Explicit backend path
+COPY backend/composer.json backend/composer.lock ./
 
 RUN composer install \
     --no-dev \
@@ -13,10 +16,11 @@ RUN composer install \
     --optimize-autoloader \
     --ignore-platform-reqs
 
-# Production stage
+# ================================
+# Runtime stage
+# ================================
 FROM php:8.2-fpm
 
-# Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -30,7 +34,6 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions
 RUN docker-php-ext-install \
     pdo_mysql \
     mbstring \
@@ -41,32 +44,27 @@ RUN docker-php-ext-install \
     zip \
     opcache
 
-# Install Redis extension (CRITICAL - was missing)
+# Redis extension
 RUN pecl install redis && docker-php-ext-enable redis
-
-# Verify Redis extension is loaded
-RUN php -m | grep redis
-
-# Copy PHP configs
-COPY docker/php/php.ini /usr/local/etc/php/conf.d/php.ini
-COPY docker/php/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 
 WORKDIR /var/www
 
-# Copy application
-COPY . .
+# 👇 Copy backend source
+COPY backend/ .
 
-# Copy vendor from build stage
+# 👇 Vendor from composer stage
 COPY --from=composer-build /app/vendor ./vendor
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www \
-    && chmod -R 755 /var/www/storage \
-    && chmod -R 755 /var/www/bootstrap/cache
+# 👇 PHP config paths from root
+COPY docker/php/php.ini /usr/local/etc/php/conf.d/php.ini
+COPY docker/php/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 
-# Copy supervisor config
+# 👇 Supervisor path from root
 COPY docker/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+RUN chown -R www-data:www-data /var/www \
+ && chmod -R 755 storage bootstrap/cache
 
 EXPOSE 9000
 
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["/usr/bin/supervisord","-c","/etc/supervisor/conf.d/supervisord.conf"]
