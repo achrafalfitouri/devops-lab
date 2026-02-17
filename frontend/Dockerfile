@@ -1,0 +1,38 @@
+# Build stage
+FROM node:lts-alpine AS build
+
+WORKDIR /app
+
+# Copy package files
+COPY package.json pnpm-lock.yaml ./
+
+# Install pnpm and dependencies
+RUN npm install -g pnpm@latest && \
+    pnpm install --frozen-lockfile --ignore-scripts
+
+# Copy all source files
+COPY . .
+
+# Build for production
+RUN pnpm build
+
+# Production stage with nginx
+FROM nginx:alpine
+
+# Install wget for healthcheck
+RUN apk add --no-cache wget
+
+# Remove default nginx config
+RUN rm /etc/nginx/conf.d/default.conf
+
+# Copy custom nginx config
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Copy built files from build stage
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
+
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]

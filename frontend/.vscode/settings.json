@@ -1,0 +1,8 @@
+{
+  "files.exclude": {
+    "**/src/print/logo.txt": true
+  },
+  "search.exclude": {
+    "**/src/print/logo.txt": true
+  }
+}

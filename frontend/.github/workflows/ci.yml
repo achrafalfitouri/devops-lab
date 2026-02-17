@@ -1,0 +1,33 @@
+name: CI Frontend 
+
+on:
+  push:
+    branches: ["main", "development"]
+  pull_request:
+    branches: ["main", "development"]
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Enable pnpm (corepack)
+        run: |
+          corepack enable
+          corepack prepare pnpm@9.6.0 --activate
+          pnpm -v
+
+      - name: Install deps
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Generate iconify CSS
+        run: pnpm run build:icons
+
+      - name: Build
+        run: pnpm build

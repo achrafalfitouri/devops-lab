@@ -1,0 +1,61 @@
+{
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-config-idiomatic-order",
+    "@stylistic/stylelint-config"
+  ],
+  "plugins": [
+    "stylelint-use-logical-spec",
+    "@stylistic/stylelint-plugin"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "**/*.scss"
+      ],
+      "customSyntax": "postcss-scss"
+    },
+    {
+      "files": [
+        "**/*.vue"
+      ],
+      "customSyntax": "postcss-html"
+    }
+  ],
+  "rules": {
+    "@stylistic/max-line-length": [
+      220,
+      {
+        "ignore": "comments"
+      }
+    ],
+    "@stylistic/indentation": null,
+    "liberty/use-logical-spec": null,
+    "selector-class-pattern": null,
+    "color-function-notation": null,
+    "annotation-no-unknown": [
+      true,
+      {
+        "ignoreAnnotations": [
+          "default"
+        ]
+      }
+    ],
+    "media-feature-range-notation": null,
+    "rule-empty-line-before" : null,
+    "order/properties-order" : null,
+    "selector-pseudo-element-no-unknown" : null,
+    "alpha-value-notation" : null,
+    "@stylistic/max-empty-lines": null,
+    "property-no-unknown" : null,
+    "@stylistic/no-eol-whitespace": null,
+    "@stylistic/block-closing-brace-newline-before" : null,
+    "@stylistic/block-closing-brace-empty-line-before" : null,
+    "property-no-vendor-prefix" : null,
+    "@stylistic/declaration-block-trailing-semicolon" : null,
+    "@stylistic/no-empty-first-line" : null,
+    "@stylistic/selector-list-comma-newline-after" : null
+
+   
+  }
+}
