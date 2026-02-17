@@ -67,6 +67,7 @@ RUN chown -R www-data:www-data /var/www \
 
 EXPOSE 8080
 
-CMD ["/usr/bin/supervisord","-c","/etc/supervisor/conf.d/supervisord.conf"]
+CMD php artisan serve --host=0.0.0.0 --port=${PORT:-8080}
+
 
 
