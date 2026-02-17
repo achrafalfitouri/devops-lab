@@ -15,7 +15,7 @@ RUN npm install -g pnpm@latest && \
 COPY . .
 
 # Build for production
-RUN pnpm build
+RUN pnpm run build:icons && pnpm build
 
 # Production stage with nginx
 FROM nginx:alpine
