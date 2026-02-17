@@ -3,12 +3,13 @@ FROM node:lts-alpine AS build
 
 WORKDIR /app
 
-# Copy package files
-COPY package.json pnpm-lock.yaml ./
+# Copy package files (lockfile optional)
+COPY package.json ./
+COPY pnpm-lock.yaml* ./
 
 # Install pnpm and dependencies
 RUN npm install -g pnpm@latest && \
-    pnpm install --frozen-lockfile --ignore-scripts
+    pnpm install --no-frozen-lockfile --ignore-scripts
 
 # Copy all source files
 COPY . .
