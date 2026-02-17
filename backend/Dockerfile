@@ -65,6 +65,7 @@ COPY docker/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN chown -R www-data:www-data /var/www \
  && chmod -R 755 storage bootstrap/cache
 
-EXPOSE 9000
+EXPOSE 8000
 
-CMD ["/usr/bin/supervisord","-c","/etc/supervisor/conf.d/supervisord.conf"]
+CMD php artisan serve --host=0.0.0.0 --port=${PORT:-8080}
+
