@@ -19,7 +19,7 @@ import { VRow } from 'vuetify/lib/components/index.mjs';
 // 👉 Snackbar
 const { showSnackbar } = useSnackbar();
 
-const apiUrl = (window as any).__ENV__?.API_BASE_URL
+const apiUrl = "https://print-backend-devops-production.up.railway.app/api"
 const baseUrl = apiUrl.replace(/\/api\/?$/, '')
 
 // 👉 Store call

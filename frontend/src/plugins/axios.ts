@@ -6,7 +6,7 @@ import { camelCase, snakeCase } from 'lodash';
 
 // 👉 Create Axios instance
 const axiosInstance = axios.create({
-  baseURL: (window as any).__ENV__?.API_BASE_URL,
+  baseURL: "https://print-backend-devops-production.up.railway.app/api",
   withCredentials: true
 });
 

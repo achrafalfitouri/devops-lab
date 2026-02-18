@@ -1,7 +1,7 @@
 import { ofetch } from 'ofetch'
 
 export const $api = ofetch.create({
-  baseURL: (window as any).__ENV__?.API_BASE_URL || '/api',
+  baseURL: "https://print-backend-devops-production.up.railway.app/api" || '/api',
   async onRequest({ options }) {
     const accessToken = useCookie('accessToken').value
     if (accessToken) {

@@ -14,7 +14,7 @@ import {mapStaticData} from '@/composables/ClientUtil';
 const store = useUserStore();
 const authStore = useAuthStore();
 
-const apiUrl = (window as any).__ENV__?.API_BASE_URL
+const apiUrl = "https://print-backend-devops-production.up.railway.app/api"
 const baseUrl = apiUrl.replace(/\/api\/?$/, '')
 
 const emit = defineEmits(['close', 'submit', 'date-picker-state']);
