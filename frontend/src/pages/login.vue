@@ -13,6 +13,7 @@ import { themeConfig } from '@themeConfig';
 import { ref, computed } from 'vue';
 import { VNodeRenderer } from './../@layouts/components/VNodeRenderer';
 import { layoutConfig } from '@layouts';
+import { axiosInstance } from '@/plugins/axios';
 
 definePage({
   meta: {
@@ -101,6 +102,8 @@ const handleLogin = async () => {
     if (!isFormValid.value) return;
 
     isLoading.value = true;
+    console.log('[axiosInstance] baseURL =', axiosInstance.defaults.baseURL);
+
 
     const response = await loginUser(form.value);
 
