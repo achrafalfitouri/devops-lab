@@ -3,6 +3,10 @@ FROM node:lts-alpine AS build
 
 WORKDIR /app
 
+# ✅ Build-time env for Vite
+ARG VITE_API_BASE_URL
+ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
+
 # Copy package files (lockfile optional)
 COPY package.json ./
 COPY pnpm-lock.yaml* ./
