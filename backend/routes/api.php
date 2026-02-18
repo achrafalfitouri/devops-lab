@@ -29,6 +29,7 @@ use App\Http\Middleware\XssSanitizer;
 Route::post('/user/login', [UserController::class, 'login']);
 Route::post('/user/logout', [UserController::class, 'logout']);
 Route::post('/password/request-reset', [UserController::class, 'requestPasswordReset']);
+Route::middleware('web')->get('/csrf-cookie', [\Laravel\Sanctum\Http\Controllers\CsrfCookieController::class, 'show']);
 
 Route::middleware(['auth:sanctum', XssSanitizer::class])->group(function () {
     // Client routes
