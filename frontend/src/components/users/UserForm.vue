@@ -14,7 +14,7 @@ import {mapStaticData} from '@/composables/ClientUtil';
 const store = useUserStore();
 const authStore = useAuthStore();
 
-const apiUrl = import.meta.env.VITE_API_BASE_URL
+const apiUrl = (window as any).__ENV__?.API_BASE_URL
 const baseUrl = apiUrl.replace(/\/api\/?$/, '')
 
 const emit = defineEmits(['close', 'submit', 'date-picker-state']);

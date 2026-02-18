@@ -40,4 +40,5 @@ COPY --from=build /app/dist /usr/share/nginx/html
 EXPOSE 80
 
 # Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["/bin/sh","-c","envsubst < /usr/share/nginx/html/env.js > /usr/share/nginx/html/env.js && nginx -g 'daemon off;'"]
+

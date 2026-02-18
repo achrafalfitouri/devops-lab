@@ -8,7 +8,7 @@ import { VForm } from 'vuetify/components/VForm';
 import * as yup from 'yup';
 
 const store = useClientStore();
-const apiUrl = import.meta.env.VITE_API_BASE_URL
+const apiUrl = (window as any).__ENV__?.API_BASE_URL
 const baseUrl = apiUrl.replace(/\/api\/?$/, '')
 const emit = defineEmits(['close', 'submit']);
 

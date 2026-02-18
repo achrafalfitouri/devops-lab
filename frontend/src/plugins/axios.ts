@@ -6,7 +6,7 @@ import { camelCase, snakeCase } from 'lodash';
 
 // 👉 Create Axios instance
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL: (window as any).__ENV__?.API_BASE_URL,
   withCredentials: true
 });
 

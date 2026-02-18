@@ -14,7 +14,7 @@ import { VForm } from 'vuetify/components/VForm';
 // 👉 Snackbar
 const { showSnackbar } = useSnackbar();
 
-const apiUrl = import.meta.env.VITE_API_BASE_URL
+const apiUrl = (window as any).__ENV__?.API_BASE_URL
 const baseUrl = apiUrl.replace(/\/api\/?$/, '')
 // 👉 Store call
 const store = useUserStore();
