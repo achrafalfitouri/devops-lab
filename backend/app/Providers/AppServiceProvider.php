@@ -127,10 +127,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(RecoveryLogRepositoryInterface::class, RecoveryLogRepository::class);
         $this->app->bind(QuoteRequestRepositoryInterface::class, QuoteRequestRepository::class);
         $this->app->bind(EmailRepositoryInterface::class, EmailRepository::class);
-        if ($this->app->environment('local')) {
-            $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
-            $this->app->register(TelescopeServiceProvider::class);
-        }
+        // if ($this->app->environment('local')) {
+        //     $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
+        //     $this->app->register(TelescopeServiceProvider::class);
+        // }
     }
 
     public function boot()
