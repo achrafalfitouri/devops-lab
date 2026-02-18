@@ -62,12 +62,13 @@ COPY docker/php/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 # 👇 Supervisor path from root
 COPY docker/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-RUN chown -R www-data:www-data /var/www \
- && chmod -R 755 storage bootstrap/cache
+RUN mkdir -p /var/www/storage/logs /var/www/bootstrap/cache \
+ && chown -R www-data:www-data /var/www \
+ && chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 
 EXPOSE 8080
 
-CMD ["sh", "-c", "php artisan config:clear && php artisan cache:clear || true; php artisan serve --host=0.0.0.0 --port=${PORT:-8080}"]
+CMD ["sh", "-c", "php artisan optimize:clear || true; php artisan serve --host=0.0.0.0 --port=${PORT:-8080}"]
 
 
 
