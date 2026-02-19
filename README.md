@@ -1,24 +1,28 @@
-🚀 DevOps Lab – Laravel + Vue + Docker + Nginx + MySQL + Redis (Railway)
+🚀 DevOps Lab
+Laravel • Vue • Docker • Nginx • MySQL • Redis • Railway
 
 A production-style DevOps laboratory project demonstrating containerization, service orchestration, reverse proxying, and cloud deployment of a modern full-stack web application.
 
-This project focuses on infrastructure, automation, and deployment practices rather than application business features.
+This repository focuses on infrastructure, automation, and deployment practices rather than application business logic.
 
-TECH STACK
-
+🧰 Tech Stack
 Backend
 
 Laravel (PHP 8.2 FPM)
 
 Frontend
 
-Vue 3 + Vite
+Vue 3
+
+Vite
 
 Infrastructure
 
-Docker & Docker Compose
+Docker
 
-Nginx (Reverse Proxy & Frontend Server)
+Docker Compose
+
+Nginx (Reverse Proxy & Web Server)
 
 MySQL
 
@@ -26,11 +30,11 @@ Redis
 
 Cloud & CI/CD
 
-Railway (hosting)
+Railway
 
-GitHub Actions (CI pipelines)
+GitHub Actions
 
-ARCHITECTURE OVERVIEW
+🏗 Architecture Overview
 
 Browser
 → Nginx (Reverse Proxy)
@@ -39,18 +43,17 @@ Browser
 → MySQL
 → Redis
 
-Frontend served by Nginx
+Responsibilities
 
-Backend runs in PHP-FPM container
+Nginx serves frontend and proxies API requests
 
-MySQL handles persistent data
+Laravel runs as PHP-FPM service
 
-Redis handles cache & sessions
+MySQL stores application data
 
-Nginx routes traffic between services
+Redis handles cache, sessions, and queues
 
-REPOSITORY STRUCTURE
-
+📁 Repository Structure
 devops-lab/
 ├── backend/
 ├── frontend/
@@ -59,44 +62,57 @@ devops-lab/
 ├── docker-compose.yml
 └── .github/workflows/
 
-LOCAL DEVELOPMENT (DOCKER COMPOSE)
-
+▶ Local Development
 Requirements
 
 Docker
 
 Docker Compose
 
-Start all services
+Start services
 docker compose up --build
 
 Access
-Frontend: http://localhost
 
-Backend API: http://localhost/api
+Frontend
 
-phpMyAdmin: http://localhost/phpmyadmin
+http://localhost
 
-CLOUD DEPLOYMENT (RAILWAY)
 
-Services deployed on Railway:
+Backend API
 
-Frontend Service (Docker)
+http://localhost/api
 
-Backend Service (Docker)
 
-MySQL Plugin
+phpMyAdmin
 
-Redis Plugin
+http://localhost/phpmyadmin
 
-Environment variables are injected using Railway Variable References, for example:
+☁️ Cloud Deployment (Railway)
+
+Deployed services:
+
+Frontend (Docker container)
+
+Backend (Docker container)
+
+MySQL plugin
+
+Redis plugin
+
+Environment variables are injected using Railway Variable References:
 
 DB_HOST=${{MySQL.MYSQLHOST}}
+DB_DATABASE=${{MySQL.MYSQLDATABASE}}
+DB_USERNAME=${{MySQL.MYSQLUSER}}
+DB_PASSWORD=${{MySQL.MYSQLPASSWORD}}
+
 REDIS_URL=${{Redis.REDIS_URL}}
+
 
 Each service builds directly from GitHub.
 
-CI/CD (GITHUB ACTIONS)
+🔄 CI/CD (GitHub Actions)
 
 Pipelines automatically:
 
@@ -108,37 +124,35 @@ Validate backend boot
 
 Build Docker images
 
-Ensures broken builds never reach production.
+This ensures broken builds never reach production.
 
-CONFIGURATION MANAGEMENT
+🔐 Configuration Management
 
-Environment variables for all secrets
+All secrets stored as environment variables
 
-No credentials committed to repository
+No credentials committed
 
-Separate configs for local and production
+Separate local and production configurations
 
-WHAT THIS PROJECT DEMONSTRATES
+🎯 What This Project Demonstrates
 
-Multi-container application design
+Multi-container architecture
 
 Docker multi-stage builds
 
 Reverse proxy with Nginx
 
-Infrastructure-aware environment configuration
+Cloud deployment using Railway
 
-Cloud deployment using managed services
+CI pipelines for quality control
 
-CI pipelines for build verification
+Infrastructure debugging and optimization
 
-Debugging and operational problem-solving
+📌 Purpose
 
-PURPOSE
+This project serves as a DevOps portfolio laboratory, showcasing real-world deployment workflows and infrastructure practices for modern web applications.
 
-This repository serves as a DevOps portfolio project showcasing real-world deployment workflows and infrastructure practices for modern web applications.
-
-AUTHOR
+👤 Author
 
 Achraf Alfitouri
 DevOps Laboratory & Portfolio Project
