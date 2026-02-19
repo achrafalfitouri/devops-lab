@@ -558,8 +558,8 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 **Achraf Alfitouri**
 
 - GitHub: [@achrafalfitouri](https://github.com/achrafalfitouri)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/your-profile)
-- Email: your.email@example.com
+- LinkedIn: [achraf-alfitouri](https://www.linkedin.com/in/achraf-alfitouri-7b1547268/)
+- Email: achrafalfitouri@gmail.com
 - Portfolio: [your-portfolio.com](https://your-portfolio.com)
 
 ---
